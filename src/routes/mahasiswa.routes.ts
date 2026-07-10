@@ -18,13 +18,13 @@ router.get("/", authenticate, allowRoles("admin", "operator", "viewer"), getAll)
 // Semua role bisa melihat detail
 router.get("/:id", authenticate, allowRoles("admin", "operator", "viewer"), getById);
 
-// Hanya admin yang boleh menambah
-router.post("/", authenticate, allowRoles("admin"), create);
+// Admin dan Operator boleh menambah
+router.post("/", authenticate, allowRoles("admin", "operator"), create);
 
-// Hanya admin yang boleh mengubah
-router.put("/:id", authenticate, allowRoles("admin"), update);
+// Admin dan Operator boleh mengubah
+router.put("/:id", authenticate, allowRoles("admin", "operator"), update);
 
-// Hanya admin yang boleh menghapus
+// Hanya Admin yang boleh menghapus
 router.delete("/:id", authenticate, allowRoles("admin"), remove);
 
 export default router;
